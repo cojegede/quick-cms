@@ -1,0 +1,54 @@
+﻿@page "/"
+@page "/{Slug}"
+@using Services
+@using HeyRed.MarkdownSharp
+@inject IContentFetcher ContentFetcher;
+@inject IContentPageParser ContentPageParser;
+@inject Markdown MD
+
+<h1>@Title</h1>
+
+@Content
+
+@functions {
+private const string AboutSlug = "about";
+
+[Parameter]
+private string Slug { get; set; }
+
+private string Title { get; set; }
+
+private MarkupString Content { get; set; }
+
+protected override async Task OnParametersSetAsync()
+{
+    await base.OnParametersSetAsync();
+
+    if (string.IsNullOrEmpty(Slug))
+    {
+        // Default to "about" page when Slug has not been specified.
+        Slug = AboutSlug;
+    }
+
+    var contentPage = await GetPageAsync(Slug);
+
+    Title = contentPage.Title;
+    Content = new MarkupString(
+        TransformContent(contentPage.Content));
+}
+
+private string TransformContent(string content)
+    => MD.Transform(content);
+
+private async Task<ContentPage> GetPageAsync(string slug)
+{
+    var contentUri = ResolvePageFileName(slug);
+    var content = await ContentFetcher.GetContentAsync(contentUri);
+    return ContentPageParser.ParseContentPage(content);
+}
+
+private string ResolvePageFileName(string slug)
+{
+    return $"pages/{slug}.md";
+}
+}
