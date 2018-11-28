@@ -7,28 +7,24 @@ namespace Blog.Services
     public sealed class ContentFetcher : IContentFetcher
     {
         private readonly HttpClient httpClient;
-        private readonly IConfigurationLoader configurationLoader;
+        private readonly IConfigurationService configurationService;
 
         public ContentFetcher(
             HttpClient httpClient,
-            IConfigurationLoader configurationLoader)
+            IConfigurationService configurationService)
         {
             this.httpClient = httpClient;
-            this.configurationLoader = configurationLoader;
+            this.configurationService = configurationService;
         }
 
         public async Task<string> GetContentAsync(string filePath)
         {
-            if (Configuration.Current == null)
-            {
-                await configurationLoader.LoadConfigurationAsync();
-            }
-            Configuration configuration = Configuration.Current;
+            Configuration configuration = await configurationService.GetConfigurationAsync();
             switch (configuration.Mode)
             {
                 case "GitHub":
                     return await httpClient.GetStringAsync(
-                        GitHubUriHelpers.GetUserContentUri(
+                        GitHubUriHelper.GetUserContentUri(
                             configuration.GitHub.User,
                             configuration.GitHub.Repository,
                             configuration.GitHub.Branch,

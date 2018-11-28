@@ -1,0 +1,13 @@
+﻿@using Services
+@ChildContent
+
+@functions {
+[Parameter]
+private RenderFragment ChildContent { get; set; }
+
+protected override async Task OnAfterRenderAsync()
+{
+    await base.OnAfterRenderAsync();
+    await Highlight.InitAsync();
+}
+}

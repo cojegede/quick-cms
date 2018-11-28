@@ -1,14 +1,14 @@
 ﻿@page "/"
 @page "/{Slug}"
 @using Services
-@using HeyRed.MarkdownSharp
-@inject IContentFetcher ContentFetcher;
-@inject IContentPageParser ContentPageParser;
-@inject Markdown MD
+@inject IContentService ContentService
+@inject IContentTransformer ContentTransformer
 
 <h1>@Title</h1>
 
-@Content
+<ContentArea>
+    @Content
+</ContentArea>
 
 @functions {
 private const string AboutSlug = "about";
@@ -30,25 +30,10 @@ protected override async Task OnParametersSetAsync()
         Slug = AboutSlug;
     }
 
-    var contentPage = await GetPageAsync(Slug);
+    var contentPage = await ContentService.GetPageAsync(Slug);
 
     Title = contentPage.Title;
     Content = new MarkupString(
-        TransformContent(contentPage.Content));
-}
-
-private string TransformContent(string content)
-    => MD.Transform(content);
-
-private async Task<ContentPage> GetPageAsync(string slug)
-{
-    var contentUri = ResolvePageFileName(slug);
-    var content = await ContentFetcher.GetContentAsync(contentUri);
-    return ContentPageParser.ParseContentPage(content);
-}
-
-private string ResolvePageFileName(string slug)
-{
-    return $"pages/{slug}.md";
+        await ContentTransformer.TransformAsync(contentPage.Content));
 }
 }

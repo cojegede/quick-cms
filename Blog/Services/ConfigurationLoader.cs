@@ -18,9 +18,7 @@ namespace Blog.Services
         public async Task<Configuration> LoadConfigurationAsync()
         {
             string configStr = await httpClient.GetStringAsync(ConfigFileUri);
-            Configuration configuration = Json.Deserialize<Configuration>(configStr);
-            Configuration.Current = configuration;
-            return configuration;
+            return Json.Deserialize<Configuration>(configStr);
         }
     }
 

@@ -1,0 +1,95 @@
+﻿@page "/posts/{Date:datetime}/{Slug}"
+@using Services
+@inject IContentService ContentService
+@inject IContentTransformer ContentTransformer
+
+<div class="row">
+
+    <div class="col-lg-8">
+
+        <h1>@Title</h1>
+
+        <p class="lead">
+            by
+            <a href="#">@Author</a>
+        </p>
+
+        <hr>
+
+        <p>Posted on @DatePublished</p>
+
+        @if (Image != null)
+        {
+            <hr>
+            <img class="img-fluid rounded" src="@Image" alt="">
+        }
+
+        <hr>
+
+        <ContentArea>
+            @Content
+        </ContentArea>
+
+    </div>
+
+    <!-- Sidebar Widgets Column -->
+    <div class="col-md-4">
+        <div class="card my-4">
+            <h5 class="card-header">Tags</h5>
+            <div class="card-body">
+                <div class="row">
+                    @if (Tags != null)
+                    {
+                        <div class="col-lg-6">
+                            <ul class="list-unstyled mb-0">
+                                @foreach (var tag in Tags)
+                                {
+                                    <li>
+                                        <a href="@($"tags/{tag}")">@tag</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+@functions {
+[Parameter]
+private DateTime Date { get; set; }
+
+[Parameter]
+private string Slug { get; set; }
+
+private string Title { get; set; }
+
+private DateTime DatePublished { get; set; }
+
+private IEnumerable<string> Tags { get; set; }
+
+private string Author { get; set; }
+
+private string Image { get; set; }
+
+private MarkupString Content { get; set; }
+
+protected override async Task OnParametersSetAsync()
+{
+    await base.OnParametersSetAsync();
+
+    ContentPage contentPage = await ContentService.GetPostAsync(Date, Slug);
+
+    Title = contentPage.Title;
+    Author = contentPage.Author;
+    Image = contentPage.Image;
+    DatePublished = DateTime.Parse(contentPage.Date);
+    Tags = contentPage.Tags;
+    Content = new MarkupString(
+        await ContentTransformer.TransformAsync(contentPage.Content));
+}
+}

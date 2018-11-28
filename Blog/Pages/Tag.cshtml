@@ -1,0 +1,33 @@
+﻿@page "/tags/{T}"
+@using Services
+@inject ITagService TagService
+@inject IContentUriResolver ContentUriResolver
+
+<h1>@T</h1>
+
+@if (Posts != null)
+{
+    <ul>
+        @foreach (var post in Posts)
+        {
+            <li><a href="@post.Key">@post.Value</a></li>
+        }
+    </ul>
+}
+
+@functions
+{
+[Parameter]
+private string T { get; set; }
+
+public IDictionary<string, string> Posts { get; set; }
+
+
+protected override async Task OnParametersSetAsync()
+{
+    await base.OnParametersSetAsync();
+
+    var tags = await TagService.GetTagsAsync();
+    Posts = tags[T];
+}
+}

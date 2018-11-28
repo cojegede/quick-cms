@@ -1,8 +1,12 @@
 ﻿{
-    "Mode": "GitHub",
+    "Mode": null,
     "GitHub": {
         "User": "robertsundstrom",
         "Repository": "robertsundstrom.github.io",
         "Branch": "master"
+    },
+    "Locations": {
+        "Pages": "pages",
+        "Posts": "posts"
     }
 }

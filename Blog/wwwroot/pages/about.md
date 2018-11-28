@@ -14,4 +14,4 @@ In my free time, I like to travel and explore the world. I'm also a language lea
 
 I'm also a contributor to projects on [GitHub](https://www.github.com/robertsundstrom), where I also share my own projects.
 
-This site is, in fact, one of my projects. It’s written in C#, and executed by the [Mono](https://www.mono-project.com/) .NET runtime on [WebAssembly](https://webassembly.org/), a web standard, directly in your browser! The source code for this app can be found [here](https://github.com/robertsundstrom/blog).
+This site is actually one of my projects. You can read more about it [here](/about-site).

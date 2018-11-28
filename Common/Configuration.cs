@@ -6,7 +6,14 @@
 
         public GitHubRepositoryInfo GitHub { get; set; }
 
-        public static Configuration Current { get; set; }
+        public ContentLocations Locations { get; set; }
+    }
+
+    public class ContentLocations
+    {
+        public string Pages { get; set; }
+
+        public string Posts { get; set; }
     }
 
     public class GitHubRepositoryInfo
