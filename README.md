@@ -4,6 +4,8 @@ A quick and evolving client-side site generator for my own personal use written 
 
 Meant as a replacement for [CMS.js](https://github.com/chrisdiana/cms.js).
 
+Experiments in ```develop``` branch.
+
 ## Description
 
 This app runs in the client browser, fetches static content (such as markdown files) that it then renders on the screen.
@@ -13,7 +15,10 @@ This app runs in the client browser, fetches static content (such as markdown fi
 * Pages generated from markdown files.
 * Configure from where what repository (or other location) to load pages.
 
-## To do
+## Development
+Check ```develop``` for the latest experiments with blogging.
+
+### To do
 * Blogging
 * Themes
 * Paging
