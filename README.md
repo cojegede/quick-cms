@@ -4,7 +4,7 @@ A quick and evolving client-side site generator for my own personal use written 
 
 Meant as a replacement for [CMS.js](https://github.com/chrisdiana/cms.js).
 
-Experiments in ```develop``` branch.
+Experimental features in ```develop``` branch.
 
 ## Description
 
