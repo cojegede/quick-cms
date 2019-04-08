@@ -1,13 +1,15 @@
 ﻿@using Services
+@inject Services.Highlight Highlight
+
 @ChildContent
 
 @functions {
-[Parameter]
-private RenderFragment ChildContent { get; set; }
+    [Parameter]
+    private RenderFragment ChildContent { get; set; }
 
-protected override async Task OnAfterRenderAsync()
-{
-    await base.OnAfterRenderAsync();
-    await Highlight.InitAsync();
-}
+    protected override async Task OnAfterRenderAsync()
+    {
+        await base.OnAfterRenderAsync();
+        await Highlight.InitAsync();
+    }
 }
