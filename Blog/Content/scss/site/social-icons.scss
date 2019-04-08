@@ -1,0 +1,22 @@
+﻿@media only screen and (max-width:768px) {
+
+    ul.social-icons {
+        display: inline-block;
+        width: 700px;
+    }
+
+    ul.social-icons > li {
+        display: inline-block;
+        padding: 10px 1%;
+    }
+
+    .footer {
+        height: 100px !important;
+    }
+
+    .foo {
+        float: left !important;
+        font-size: small;
+        height: 40px;
+    }
+}

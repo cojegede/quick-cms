@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components.Hosting;
+﻿using Microsoft.AspNetCore.Blazor.Hosting;
+using Microsoft.AspNetCore.Components.Hosting;
 
 namespace Blog
 {

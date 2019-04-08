@@ -1,13 +1,21 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.JSInterop;
 
 namespace Blog.Services
 {
     public sealed class Highlight
     {
-        public static async Task InitAsync()
+        private readonly IJSRuntime jSRuntime;
+
+        public Highlight(IJSRuntime jSRuntime)
+        {
+            this.jSRuntime = jSRuntime;
+        }
+
+        public async Task InitAsync()
         {
 
-            await Microsoft.JSInterop.JSRuntime.Current.InvokeAsync<object>("initHighlight");
+            await jSRuntime.InvokeAsync<object>("initHighlight");
         }
     }
 }

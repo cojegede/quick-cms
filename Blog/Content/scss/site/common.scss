@@ -1,0 +1,119 @@
+﻿@import 'navbar.scss';
+@import 'loader.scss';
+@import 'social-icons.scss';
+@import 'github-corner.scss';
+
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    /* Margin bottom by footer height */
+    padding-top: 60px;
+    margin-bottom: 60px;
+    font-family: Muli,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji','Segoe UI Emoji','Segoe UI Symbol','Noto Color Emoji';
+}
+
+@media (max-width: 980px) {
+    body {
+        padding-top: 15px;
+    }
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    line-height: 60px; /* Vertically center the text there */
+    background-color: #f5f5f5;
+}
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+app > .container {
+    padding: 60px 15px 0;
+    padding-bottom: 40px;
+}
+
+.footer > .container {
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+pre {
+    background-color: #f6f8fa !important;
+}
+
+code {
+    font-size: 80%;
+}
+
+.bg-dark {
+    background-color: #567dec !important;
+}
+
+.navbar-brand {
+    display: inline-block;
+    padding-top: .3125rem;
+    padding-bottom: .3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Saira Extra Condensed', -apple-system,BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji' !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    color: #343a40 !important;
+}
+
+h1 {
+    font-size: 6rem;
+    line-height: 5.5rem;
+}
+
+h2 {
+    display: block !important;
+    font-size: 3.5em !important;
+    font-weight: bold !important;
+}
+
+h3 {
+    display: block !important;
+    font-size: 2em !important;
+    font-weight: bold !important;
+}
+
+h4 {
+    display: block !important;
+    font-size: 1.0em !important;
+    font-weight: bold !important;
+}
+
+@media only screen and (max-width: 600px) {
+    h1 {
+        margin-top: 0 !important;
+    }
+}
+
+.photo {
+    border-radius: 50%;
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+    .photo {
+        float: none !important;
+    }
+}

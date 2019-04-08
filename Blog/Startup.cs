@@ -8,6 +8,8 @@ namespace Blog
     {
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<Highlight>();
+
             services.AddSingleton<IConfigurationService, ConfigurationService>();
             services.AddSingleton<IConfigurationLoader, ConfigurationLoader>();
             services.AddSingleton<IContentService, ContentService>();
@@ -18,7 +20,7 @@ namespace Blog
             services.AddSingleton<IContentUriResolver, ContentUriResolver>();
         }
 
-        public void Configure(IBlazorApplicationBuilder app)
+        public void Configure(IComponentsApplicationBuilder app)
         {
             app.AddComponent<App>("app");
         }
